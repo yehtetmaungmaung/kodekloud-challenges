@@ -1,11 +1,17 @@
-apiVersion: v1
-kind: Config
-preferences: {}
-clusters:
-- cluster:
-  name: kubernetes
-users:
-- name: martin
-contexts:
-- name: developer
-  context:
+#apiVersion: v1
+#kind: Config
+#preferences: {}
+#clusters:
+#- cluster:
+#  name: kubernetes
+#users:
+#- name: martin
+#contexts:
+#- name: developer
+#  context:
+#---
+## commands 
+#kubectl config --kubeconfig=config-demo set-cluster kubernetes --server=https://localhost --certificate-authority=/etc/kubernetes/kubernetes.ca
+kubectl config --kubeconfig=config-demo set-credentials martin --client-certificate=/root/martin.crt --client-key=/root/martin.key
+kubectl config --kubeconfig=config-demo set-context developer --cluster=kubernetes --namespace=development --user=martin
+kubectl config use-context developer
